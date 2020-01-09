@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>蘿莉RGB</title>
+    <script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('status').innerHTML = xhttp.responseText;
+          }
+        };
+
+        function testGet(cmd) {
+          document.getElementById('status').innerHTML = '送出中...';
+          xhttp.open('GET', '/cmd?led=' + cmd, true);
+          xhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="javascript:location.href='/cmd?led=r'">紅色</button>
+    <button type="button" onclick="javascript:location.href='/cmd?led=g'">綠色</button>
+    <button type="button" onclick="javascript:location.href='/cmd?led=b'">藍色</button>
+    <a href="#" onclick='testGet("r")'>紅色</a>
+    <a href="#" onclick='testGet("g")'>綠色</a>
+    <a href="#" onclick='testGet("b")'>藍色</a>
+    <a href="#" onclick='testGet("close")'>關閉</a>
+    <p id='status'>顯示訊息</p>
+</body>
+</html>
